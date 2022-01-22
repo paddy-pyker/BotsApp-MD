@@ -27,7 +27,6 @@ class BotsApp {
     isAudio: any;
     isReplyAudio: any;
     isSenderGroupAdmin: any;
-    isSenderSUDO: any;
     isCmd: any;
     commandName: any;
     logGroup: any;
@@ -37,7 +36,7 @@ class BotsApp {
     groupId: any;
     constructor(
         mimeType, type, isReply, body, isCmd, commandName,chat, chatId, fromMe, owner, logGroup,
-        isGroup, isPm, sender, groupName, groupMembers, groupAdmins, groupId, isBotGroupAdmin, isSenderGroupAdmin, isSenderSUDO, replyMessageId, replyMessage, 
+        isGroup, isPm, sender, groupName, groupMembers, groupAdmins, groupId, isBotGroupAdmin, isSenderGroupAdmin, replyMessageId, replyMessage,
         replyParticipant, isImage, isReplyImage, imageCaption, isGIF, isReplyGIF, isSticker, isReplySticker, isReplyVideo, isReplyAudio,
         isVideo, isAudio, isReplyAnimatedSticker) {
         this.mimeType = mimeType;
@@ -68,7 +67,6 @@ class BotsApp {
         this.isAudio = isAudio;
         this.isReplyAudio = isReplyAudio;
         this.isSenderGroupAdmin = isSenderGroupAdmin;
-        this.isSenderSUDO = isSenderSUDO;
         this.isCmd = isCmd;
         this.commandName = commandName;
         this.logGroup = logGroup;

@@ -5,7 +5,6 @@ exports.resolve = function(messageInstance, client, groupMetadata) {
     var BotsApp = new BotsAppClass();
     var prefix = config.PREFIX + '\\w+'
     var prefixRegex = new RegExp(prefix, 'g');
-    var SUDOstring = config.SUDO;
     try{
         var jsonMessage = JSON.stringify(messageInstance)
     }catch(err){
@@ -46,7 +45,6 @@ exports.resolve = function(messageInstance, client, groupMetadata) {
     BotsApp.groupMembers = BotsApp.isGroup ? groupMetadata.participants : '';
     BotsApp.groupAdmins = BotsApp.isGroup ? getGroupAdmins(BotsApp.groupMembers) : '';
     BotsApp.groupId = BotsApp.isGroup ? groupMetadata.id : '';
-    BotsApp.isSenderSUDO = SUDOstring.includes(BotsApp.sender.substring(0,BotsApp.sender.indexOf("@")));
     BotsApp.isBotGroupAdmin = BotsApp.isGroup ? (BotsApp.groupAdmins.includes(BotsApp.owner)) : false;
     BotsApp.isSenderGroupAdmin = BotsApp.isGroup ? (BotsApp.groupAdmins.includes(BotsApp.sender)) : false;
 
@@ -56,8 +54,8 @@ exports.resolve = function(messageInstance, client, groupMetadata) {
 function getGroupAdmins(participants){
     var admins = [];
     for (var i in participants) {
-        participants[i].isAdmin ? admins.push(participants[i].jid) : '';
+        participants[i].admin ? admins.push(participants[i].id) : '';
     }
-    // console.log("ADMINS -> " + admins);
+   //  console.log("ADMINS -> " + admins);
     return admins;
 }

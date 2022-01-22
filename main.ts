@@ -48,6 +48,8 @@ const startSock = () => {
         const sender = chat.key.remoteJid
         const groupMetaData = sender.endsWith("@g.us") ? await sock.groupMetadata(sender) : ''
 
+         //finish and send message to self
+
         if(chat.key.fromMe || m.type !== 'notify') return
 
         var BotsApp = wa.resolve(chat,sock, groupMetaData);   

@@ -1,7 +1,7 @@
-const { MessageType } = require("@adiwajshing/baileys");
 const Strings = require("../lib/db");
 const ADMINS = Strings.admins;
 const inputSanitization = require("../sidekick/input-sanitization");
+const TRANSPORT = require('../core/transmission')
 
 module.exports = {
     name: "admins",
@@ -11,11 +11,7 @@ module.exports = {
     async handle(client, chat, BotsApp, args) {
         try {
             if (!BotsApp.isGroup) {
-                client.sendMessage(
-                    BotsApp.chatId,
-                    ADMINS.NOT_GROUP_CHAT,
-                    MessageType.text
-                ).catch(err => inputSanitization.handleError(err, client, BotsApp));
+                await TRANSPORT.sendMessageWTyping(client, chat, {text: ADMINS.NOT_GROUP_CHAT}).catch(err => inputSanitization.handleError(err, client, BotsApp));
                 return;
             }
 
@@ -25,25 +21,24 @@ module.exports = {
                 message += `@${number} `;
             }
 
-            if (!BotsApp.isReply) {
-                client.sendMessage(BotsApp.chatId, message, MessageType.text, {
-                    contextInfo: {
-                        mentionedJid: BotsApp.groupAdmins,
-                    },
-                }).catch(err => inputSanitization.handleError(err, client, BotsApp));
-                return;
+             if (!BotsApp.isReply) {
+                 await TRANSPORT.sendMessageWTyping(client, chat, {
+                     text: message,
+                     contextInfo:{
+                         mentionedJid:BotsApp.groupAdmins
+                     }}).catch(err => inputSanitization.handleError(err, client, BotsApp));
+                 return;
             }
 
-            client.sendMessage(BotsApp.chatId, message, MessageType.text, {
-                contextInfo: {
+            await TRANSPORT.sendMessageWTyping(client, chat, {text: message,
+                contextInfo:{
                     stanzaId: BotsApp.replyMessageId,
                     participant: BotsApp.replyParticipant,
-                    quotedMessage: {
-                        conversation: BotsApp.replyMessage,
+                    quotedMessage:{
+                        conversation:BotsApp.replyMessage
                     },
-                    mentionedJid: BotsApp.groupAdmins,
-                },
-            }).catch(err => inputSanitization.handleError(err, client, BotsApp));
+                    mentionedJid:BotsApp.groupAdmins
+            }}).catch(err => inputSanitization.handleError(err, client, BotsApp));
         } catch (err) {
             await inputSanitization.handleError(err, client, BotsApp);
         }
