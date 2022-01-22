@@ -23,6 +23,7 @@
     "ocr-space-api-wrapper": "^2.1.0",
     "pino": "^7.0.0",
     "protobufjs": "^6.10.1",
+    "python-format-js": "^1.4.0",
     "qrcode-reader": "^1.0.4",
     "songlyrics": "^2.2.4",
     "unofficial-carbon-now": "^1.0.3",

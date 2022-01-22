@@ -5,6 +5,8 @@ const fs = require('fs')
 const chalk = require('chalk');
 const wa = require('./core/helper')
 const TRANSMIT = require('./core/transmission')
+const STRINGS = require("./lib/db");
+const GENERAL = STRINGS.general;
 
 
 const { state, saveState } = useSingleFileAuthState('./auth_info_multi.json')
@@ -35,22 +37,18 @@ const startSock = () => {
                 chalk.redBright.bold(`${file}`)
             )
             console.log(`[ERROR] `, error);
-          //  process.exit(-1)
+            process.exit(-1)
         }
     }
 
     if(moduleSuccess) console.log(chalk.green.bold("[INFO] All Plugins Installed Successfully. The bot is ready to use."))
        else console.log(chalk.red.bold("[ERROR] Some plugins weren't installed"))
-    
+
+
     sock.ev.on('messages.upsert', async m => {
-           
         const chat = m.messages[0]
         const sender = chat.key.remoteJid
         const groupMetaData = sender.endsWith("@g.us") ? await sock.groupMetadata(sender) : ''
-
-         //finish and send message to self
-
-        if(chat.key.fromMe || m.type !== 'notify') return
 
         var BotsApp = wa.resolve(chat,sock, groupMetaData);   
         
@@ -90,6 +88,8 @@ const startSock = () => {
                 console.log('connection closed')
             }
         }
+
+        if(connection === 'open') sock.sendMessage(sock.user.id, {text: GENERAL.SUCCESSFUL_CONNECTION})
         
         console.log('connection update', update)
     })

@@ -1,11 +1,12 @@
 export
-const { MessageType } = require("@adiwajshing/baileys");
 const config = require('../config')
 const fs = require("fs");
 const chalk = require("chalk");
 const { JSDOM } = require("jsdom");
 const { window } = new JSDOM();
 const ERROR_TEMPLATE = require("../lib/db").general.ERROR_TEMPLATE
+const TRANSMIT = require('../core/transmission')
+const format = require("python-format-js");
 
 exports.getCleanedContact = async (args,client,BotsApp) => {
     var jidNumber = '';
@@ -17,7 +18,7 @@ exports.getCleanedContact = async (args,client,BotsApp) => {
             
         }
         else {
-            client.sendMessage(BotsApp.chatId,"*Enter valid contact number.* Approved Syntax:\n```1. XXXXXXXXXX``` \n```2. Tag the person``` \n```3. +(YYY)XXXXXXXXXX.``` \n_(YY- Country Code, without zeros)_",MessageType.text);
+            await TRANSMIT.sendMessageWTyping(client,BotsApp.chat,{text:"*Enter valid contact number.* Approved Syntax:\n```1. XXXXXXXXXX``` \n```2. Tag the person``` \n```3. +(YYY)XXXXXXXXXX.``` \n_(YY- Country Code, without zeros)"})
             return undefined;
         }
     } else {
@@ -25,11 +26,7 @@ exports.getCleanedContact = async (args,client,BotsApp) => {
     }
 
     if (jidNumber.length < 8 || jidNumber.length > 13) {
-        client.sendMessage(
-            BotsApp.chatId,
-            "*Enter valid contact number.* Approved Syntax:\n```1. XXXXXXXXXX``` \n```2. Tag the person``` \n```3. +(YYY)XXXXXXXXXX.``` \n_(YY- Country Code, without zeros)_",
-            MessageType.text
-        );
+        await TRANSMIT.sendMessageWTyping(client,BotsApp.chat,{text:"*Enter valid contact number.* Approved Syntax:\n```1. XXXXXXXXXX``` \n```2. Tag the person``` \n```3. +(YYY)XXXXXXXXXX.``` \n_(YY- Country Code, without zeros)"})
         return undefined;
     } 
     else if (jidNumber.length === 10) { 
@@ -79,7 +76,7 @@ exports.isMember = async (chatId, groupMembers) => {
         }
 }
 
-exports.handleError = async(err, client, BotsApp, customMessage = "```Something went wrong. The error has been logged in log chats```") => {
+exports.handleError = async(err, client, BotsApp, customMessage = "```Something went wrong```") => {
     console.log(chalk.redBright.bold("[ERROR] " + err));
     const data = {
         commandName: BotsApp.commandName,
@@ -93,8 +90,9 @@ exports.handleError = async(err, client, BotsApp, customMessage = "```Something 
         isSenderSudo: BotsApp.isSenderSUDO,
         err: err
     }
-    client.sendMessage(BotsApp.chatId, customMessage, MessageType.text);
-    client.sendMessage(BotsApp.logGroup, ERROR_TEMPLATE.format(data), MessageType.text);
+    await TRANSMIT.sendMessageWTyping(client,BotsApp.chat,{text:customMessage})
+    await TRANSMIT.sendMessageWTyping(client,BotsApp.chat,{text:ERROR_TEMPLATE.format(data)})
+
 }
 
 exports.adminCommands = [

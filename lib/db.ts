@@ -11,7 +11,7 @@ const data = {
             "```Hey there, I am a BOT in ``` *{BotsApp.groupName}*``` which allows only the owner and sudo users to use the command``` *{commandName}* ```.",
         ERROR_TEMPLATE:
             "```Looks like something went wrong. Need not worry. Here are some logs since when the bot was not responding as expected.```\n```---------```\n```🧐 Command:``` *{commandName}*\n```😎 From Me?:``` *{fromMe}*\n```🗣️ Was a reply?:``` *{isReply}*\n```👥 In a group?``` *{isGroup}*\n```📥 In Inbox?``` *{isPm}*\n```📸 Command with image?``` *{isImage}*\n```🕺🏻 Is Bot group admin?``` *{isBotGroupAdmin}*\n```📈 Was Sender group admin?``` *{isSenderGroupAdmin}*\n```🫂 Was sender sudo?``` *{isSenderSudo}*\n```⚠️ Error:``` \n*{err}*\n```---------```\n_To figure out what exactly went wrong, please report/raise the issue on our support chat at_ https://chat.whatsapp.com/Gc8gNMoue2uHyd6xhFwvEP",
-        SUCCESSFUL_CONNECTION: "*BotsApp successfuly integrated.*\n```Bot is currently working in``` *{worktype}* ```mode.```\n```For more information regarding Bot working and permissions check out:``` \n🔗https://github.com/BotsAppOfficial/BotsApp."
+        SUCCESSFUL_CONNECTION: "*BotsApp successfuly integrated.*\n```Bot is currently working in public mode.```\n```For more information regarding Bot workings check out:``` \n🔗https://github.com/BotsAppOfficial/BotsApp."
     },
     abl: {
         DESCRIPTION: "Module to blacklist a person or a chat from using the bot.",
