@@ -4,9 +4,9 @@ const fs = require("fs");
 const chalk = require("chalk");
 const { JSDOM } = require("jsdom");
 const { window } = new JSDOM();
-const ERROR_TEMPLATE = require("../lib/db").general.ERROR_TEMPLATE
+//const ERROR_TEMPLATE = require("../lib/db").general.ERROR_TEMPLATE
 const TRANSMIT = require('../core/transmission')
-const format = require("python-format-js");
+//const format = require("python-format-js");
 
 exports.getCleanedContact = async (args,client,BotsApp) => {
     var jidNumber = '';
@@ -76,22 +76,9 @@ exports.isMember = async (chatId, groupMembers) => {
         }
 }
 
-exports.handleError = async(err, client, BotsApp, customMessage = "```Something went wrong```") => {
+exports.handleError = async(err, client, BotsApp, customMessage = "```Oops! Something went wrong😥️😥️😥️```") => {
     console.log(chalk.redBright.bold("[ERROR] " + err));
-    const data = {
-        commandName: BotsApp.commandName,
-        fromMe: BotsApp.fromMe,
-        isReply: BotsApp.isReply,
-        isGroup: BotsApp.isGroup,
-        isPm: BotsApp.isPm,
-        isImage: BotsApp.isImage,
-        isBotGroupAdmin: BotsApp.isBotGroupAdmin,
-        isSenderGroupAdmin: BotsApp.isSenderGroupAdmin,
-        isSenderSudo: BotsApp.isSenderSUDO,
-        err: err
-    }
     await TRANSMIT.sendMessageWTyping(client,BotsApp.chat,{text:customMessage})
-    await TRANSMIT.sendMessageWTyping(client,BotsApp.chat,{text:ERROR_TEMPLATE.format(data)})
 
 }
 

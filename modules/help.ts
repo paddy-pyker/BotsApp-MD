@@ -1,7 +1,7 @@
 export
 const { MessageType } = require("@adiwajshing/baileys");
 const Strings = require("../lib/db");
-const inputSanitization = require("../sidekick/input-sanitization");
+//const inputSanitization = require("../sidekick/input-sanitization");
 const config = require("../config");
 const TRANSMIT = require('../core/transmission')
 const HELP = Strings.help;
@@ -24,7 +24,7 @@ module.exports = {
                 commandHandler.forEach(element => {
                     helpMessage += HELP.TEMPLATE.format(prefixes[0] + element.name, element.description);
                 });
-                await TRANSMIT.sendMessageWTyping(client,BotsApp.chat,{text:helpMessage}).catch(err => inputSanitization.handleError(err, client, BotsApp));
+                await TRANSMIT.sendMessageWTyping(client,BotsApp.chat,{text:helpMessage})//.catch(err => inputSanitization.handleError(err, client, BotsApp));
                 return;
             }
              helpMessage = HELP.COMMAND_INTERFACE;
@@ -55,18 +55,17 @@ module.exports = {
                         buttons: buttons,
                         headerType: 1
                     }
-                    return await TRANSMIT.sendMessageWTyping(client,BotsApp.chat,buttonMessage).catch(err => inputSanitization.handleError(err, client, BotsApp));
+                    return await TRANSMIT.sendMessageWTyping(client,BotsApp.chat,buttonMessage)//.catch(err => inputSanitization.handleError(err, client, BotsApp));
 
                 }
 
                 helpMessage += HELP.COMMAND_INTERFACE_TEMPLATE.format(triggers, command.extendedDescription);
-                return await TRANSMIT.sendMessageWTyping(client,BotsApp.chat,{text:helpMessage}).catch(err => inputSanitization.handleError(err, client, BotsApp));
+                return await TRANSMIT.sendMessageWTyping(client,BotsApp.chat,{text:helpMessage})//.catch(err => inputSanitization.handleError(err, client, BotsApp));
 
             }
-            await TRANSMIT.sendMessageWTyping(client,BotsApp.chat,{text:HELP.COMMAND_INTERFACE + "```Invalid Command. Check the correct name from```  *.help*  ```command list.```"}).catch(err => inputSanitization.handleError(err, client, BotsApp));
-            client.sendMessage(BotsApp.chatId, HELP.COMMAND_INTERFACE + "```Invalid Command. Check the correct name from```  *.help*  ```command list.```", MessageType.text).catch(err => inputSanitization.handleError(err, client, BotsApp));
+            await TRANSMIT.sendMessageWTyping(client,BotsApp.chat,{text:HELP.COMMAND_INTERFACE + "```Invalid Command. Check the correct name from```  *.help*  ```command list.```"})//.catch(err => inputSanitization.handleError(err, client, BotsApp));
         } catch (err) {
-            await inputSanitization.handleError(err, client, BotsApp);
+           // await inputSanitization.handleError(err, client, BotsApp);
         }
     },
 };
