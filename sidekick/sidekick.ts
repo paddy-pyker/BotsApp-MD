@@ -2,6 +2,7 @@ class BotsApp {
     mimeType: any;
     type: any;
     body: any;
+    chat: any;
     chatId: any;
     fromMe: any;
     owner: any;
@@ -35,13 +36,14 @@ class BotsApp {
     groupAdmins: any;
     groupId: any;
     constructor(
-        mimeType, type, isReply, body, isCmd, commandName, chatId, fromMe, owner, logGroup,
+        mimeType, type, isReply, body, isCmd, commandName,chat, chatId, fromMe, owner, logGroup,
         isGroup, isPm, sender, groupName, groupMembers, groupAdmins, groupId, isBotGroupAdmin, isSenderGroupAdmin, isSenderSUDO, replyMessageId, replyMessage, 
         replyParticipant, isImage, isReplyImage, imageCaption, isGIF, isReplyGIF, isSticker, isReplySticker, isReplyVideo, isReplyAudio,
         isVideo, isAudio, isReplyAnimatedSticker) {
         this.mimeType = mimeType;
         this.type = type;
         this.body = body;
+        this.chat = chat
         this.chatId = chatId; // If PM, then the person's JID. If group, then the group's JID.
         this.fromMe = fromMe;
         this.owner = owner;

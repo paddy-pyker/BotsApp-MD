@@ -1,9 +1,10 @@
 import { Boom } from "@hapi/boom"
-import makeWASocket, { DisconnectReason, delay, useSingleFileAuthState} from "@adiwajshing/baileys"
+import makeWASocket, { DisconnectReason, useSingleFileAuthState} from "@adiwajshing/baileys"
 import { join } from 'path';
 const fs = require('fs')
 const chalk = require('chalk');
 const wa = require('./core/helper')
+const TRANSMIT = require('./core/transmission')
 
 
 const { state, saveState } = useSingleFileAuthState('./auth_info_multi.json')
@@ -34,26 +35,12 @@ const startSock = () => {
                 chalk.redBright.bold(`${file}`)
             )
             console.log(`[ERROR] `, error);
-            process.exit(-1)
+          //  process.exit(-1)
         }
     }
 
     if(moduleSuccess) console.log(chalk.green.bold("[INFO] All Plugins Installed Successfully. The bot is ready to use."))
        else console.log(chalk.red.bold("[ERROR] Some plugins weren't installed"))
-     
-       
-
-    const sendMessageWTyping = async(msg, jid) => {
-        await sock.presenceSubscribe(jid)
-        await delay(500)
-
-        await sock.sendPresenceUpdate('composing', jid)
-        await delay(2000)
-
-        await sock.sendPresenceUpdate('paused', jid)
-
-        await sock.sendMessage(jid, msg)
-    }
     
     sock.ev.on('messages.upsert', async m => {
            
@@ -67,11 +54,28 @@ const startSock = () => {
         
         if(BotsApp.isCmd){
 
-        console.log('replying to', chat.key.remoteJid)
-        await sock.sendReadReceipt(chat.key.remoteJid, chat.key.participant, [chat.key.id])
-        await sendMessageWTyping({ text: 'it worked' }, chat.key.remoteJid)
-        
-        }  
+            console.log(chalk.redBright.bold(`[INFO] ${BotsApp.commandName} command received.`));
+            const command = commandHandler.get(BotsApp.commandName);
+            var args = BotsApp.body.trim().split(/\s+/).slice(1);
+
+            if (!command) {
+                await TRANSMIT.sendMessageWTyping(sock,BotsApp.chat,{text:"```Woops, invalid command! Use```  *.help*  ```to display the command list.```"});
+                return;
+            } else if (command && BotsApp.commandName == "help") {
+                try {
+                    command.handle(sock, chat, BotsApp, args, commandHandler);
+                    return;
+                } catch (err) {
+                    console.log(chalk.red("[ERROR] ", err));
+                    return;
+                }
+            }
+            try {
+                command.handle(sock, chat, BotsApp, args).catch(err => console.log("[ERROR] " + err));
+            } catch (err) {
+                console.log(chalk.red("[ERROR] ", err));
+            }
+        }
     })
 
     sock.ev.on('connection.update', (update) => {

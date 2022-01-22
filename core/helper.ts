@@ -13,6 +13,7 @@ exports.resolve = function(messageInstance, client, groupMetadata) {
     }
     // console.log(messageInstance);
     // console.log(jsonMessage);
+    BotsApp.chat = messageInstance
     BotsApp.chatId = messageInstance.key.remoteJid || '';
     BotsApp.fromMe = messageInstance.key.fromMe;
     BotsApp.owner = client.user.jid || '';
