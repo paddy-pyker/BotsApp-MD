@@ -4,18 +4,14 @@ const fs = require("fs");
 const chalk = require("chalk");
 const { JSDOM } = require("jsdom");
 const { window } = new JSDOM();
-//const ERROR_TEMPLATE = require("../lib/db").general.ERROR_TEMPLATE
 const TRANSMIT = require('../core/transmission')
-//const format = require("python-format-js");
 
 exports.getCleanedContact = async (args,client,BotsApp) => {
     var jidNumber = '';
-    var countryCode = config.COUNTRY_CODE; 
+    var countryCode = config.COUNTRY_CODE;
     if (isNaN(args[0]) || args[0][0] === "+") {
         if (args[0][0] === "@" || args[0][0] === "+") {
             jidNumber = args[0].substring(1, args[0].length + 1);
-           
-            
         }
         else {
             await TRANSMIT.sendMessageWTyping(client,BotsApp.chat,{text:"*Enter valid contact number.* Approved Syntax:\n```1. XXXXXXXXXX``` \n```2. Tag the person``` \n```3. +(YYY)XXXXXXXXXX.``` \n_(YY- Country Code, without zeros)"})
@@ -46,26 +42,26 @@ exports.deleteFiles = async (...locations) => {
         fs.unlink(location, (err) => {
             if (err) console.log(err);
             else {
-                // console.log("\nDeleted file at: " + location);
+                 console.log("\nDeleted file at: " + location)
             }
-        });
+        })
     }
 };
 
 exports.performanceTime = async (startTime) => {
     var endTime = window.performance.now();
-    // console.log(
-    //     `-----------\nExecution time: ${
-    //         (endTime - startTime) / 1000
-    //     } seconds\n----------`
-    // );
+    console.log(
+        `-----------\nExecution time: ${
+            (endTime - startTime) / 1000
+        } seconds\n----------`
+    )
 }
 
 exports.isMember = async (chatId, groupMembers) => {
         var isMember = false;
         if(!(chatId === undefined)){
             for (const index in groupMembers) {
-                if (chatId == groupMembers[index].jid.split("@")[0]) {
+                if (chatId == groupMembers[index].id.split("@")[0]) {
                     isMember = true;
                 }
             }
@@ -76,24 +72,19 @@ exports.isMember = async (chatId, groupMembers) => {
         }
 }
 
-exports.handleError = async(err, client, BotsApp, customMessage = "```Oops! Something went wrong😥️😥️😥️```") => {
-    console.log(chalk.redBright.bold("[ERROR] " + err));
+exports.handleError = async(err, client, BotsApp, customMessage = "```Oops! Something went wrong😥️😥️😥️ ``` \n You request didn't complete successfully") => {
+    console.log(chalk.redBright.bold("[ERROR] " + err))
+    await client.sendMessage(client.user.id, {text: err})
     await TRANSMIT.sendMessageWTyping(client,BotsApp.chat,{text:customMessage})
-
 }
 
 exports.adminCommands = [
-    "add",
-    "demote",
     "invite",
     "mute",
     "promote",
     "remove",
     "unmute",
-    "welcome",
-    "goodbye",
     "setdp",
     "tagall"
 ];
 
-exports.sudoCommands = ["block", "unblock"];

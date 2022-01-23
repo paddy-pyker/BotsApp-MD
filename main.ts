@@ -37,7 +37,7 @@ const startSock = () => {
                 chalk.redBright.bold(`${file}`)
             )
             console.log(`[ERROR] `, error);
-            process.exit(-1)
+            process.exit(-1)  /// TODO: comment this line after development
         }
     }
 
