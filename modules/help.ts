@@ -64,6 +64,8 @@ module.exports = {
                     }
                     return await TRANSMIT.sendMessageWTyping(client,BotsApp.chat,buttonMessage)
 
+                    //TODO: fix button clicking not working in individual chats
+
                 }
 
                 helpMessage += HELP.COMMAND_INTERFACE_TEMPLATE.format(triggerss, command.extendedDescription);

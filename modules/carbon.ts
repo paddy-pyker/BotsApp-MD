@@ -1,9 +1,9 @@
 export
-const { MessageType, Mimetype } = require("@adiwajshing/baileys");
 const String = require("../lib/db");
 const Carbon = require("unofficial-carbon-now");
 const inputSanitization = require("../sidekick/input-sanitization");
 const CARBON = String.carbon;
+const TRANSMIT = require('../core/transmission')
 
 module.exports = {
     name: "carbon",
@@ -52,19 +52,9 @@ module.exports = {
             var code = ""
             var themeInput = ""
             if (args[0] == null && !BotsApp.isReply) {
-                await client.sendMessage(
-                    BotsApp.chatId,
-                    CARBON.NO_INPUT,
-                    MessageType.text
-                ).catch(err => inputSanitization.handleError(err, client, BotsApp));
-                return;
+                return  await  TRANSMIT.sendMessageWTyping(client,BotsApp.chat,{text:CARBON.NO_INPUT});
             } else if (BotsApp.isReply && !BotsApp.replyMessage) {
-                await client.sendMessage(
-                    BotsApp.chatId,
-                    CARBON.INVALID_REPLY,
-                    MessageType.text
-                ).catch(err => inputSanitization.handleError(err, client, BotsApp));
-                return;
+                return  await  TRANSMIT.sendMessageWTyping(client,BotsApp.chat,{text:CARBON.INVALID_REPLY});
             } else if (BotsApp.isReply) {
                 code = BotsApp.replyMessage;
                 themeInput = themes[Math.floor(Math.random() * themes.length)];
@@ -82,20 +72,13 @@ module.exports = {
                                 message += `\n${counter}. ${theme}`;
                                 counter += 1;
                             })
-                            await client.sendMessage(
-                                BotsApp.chatId,
-                                "```" + message + "```",
-                                MessageType.text
-                            )
-                            return;
+
+                            return  await  TRANSMIT.sendMessageWTyping(client,BotsApp.chat,{text:"```" + message + "```"});
+
                         }
                         else{
-                            await client.sendMessage(
-                                BotsApp.chatId,
-                                CARBON.NO_INPUT,
-                                MessageType.text
-                            ).catch(err => inputSanitization.handleError(err, client, BotsApp));
-                            return;
+                            return  await  TRANSMIT.sendMessageWTyping(client,BotsApp.chat,{text:CARBON.NO_INPUT});
+
                         }
                     }
                     var body = BotsApp.body.split("-t");
@@ -105,12 +88,8 @@ module.exports = {
                     );
                      themeInput = body[1].substring(1);
                     if (!themes.includes(themeInput)) {
-                        await client.sendMessage(
-                            BotsApp.chatId,
-                            CARBON.INVALID_THEME,
-                            MessageType.text
-                        ).catch(err => inputSanitization.handleError(err, client, BotsApp));
-                        return;
+                        return  await  TRANSMIT.sendMessageWTyping(client,BotsApp.chat,{text:CARBON.INVALID_THEME});
+
                     }
                 } catch (err) {
                     if (err instanceof TypeError) {
@@ -124,32 +103,18 @@ module.exports = {
                 }
             }
             try {
-                const processing = await client.sendMessage(
-                    BotsApp.chatId,
-                    CARBON.CARBONIZING,
-                    MessageType.text
-                ).catch(err => inputSanitization.handleError(err, client, BotsApp));
+                await TRANSMIT.sendMessageWTyping(client,BotsApp.chat,{text:CARBON.CARBONIZING});
+
                 const carbon = new Carbon.createCarbon()
                     .setCode(code)
                     .setPrettify(true)
                     .setTheme(themeInput);
                 const output = await Carbon.generateCarbon(carbon);
-                await client.sendMessage(
-                    BotsApp.chatId,
-                    output,
-                    MessageType.image,
-                    {
-                        mimetype: Mimetype.png,
-                        caption: CARBON.OUTPUT.format(themeInput),
-                    }
-                ).catch(err => inputSanitization.handleError(err, client, BotsApp));
-                // return await client.deleteMessage(BotsApp.chatId, {
-                //     id: processing.key.id,
-                //     remoteJid: BotsApp.chatId,
-                //     fromMe: true,
-                // });
+
+               return await TRANSMIT.sendMessageWTyping(client,BotsApp.chat,{image:output})
+
             } catch (err) {
-                throw err;
+                await inputSanitization.handleError(err, client, BotsApp);
             }
         } catch (err) {
             await inputSanitization.handleError(err, client, BotsApp);
