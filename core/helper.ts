@@ -15,7 +15,7 @@ exports.resolve = function(messageInstance, client, groupMetadata) {
     BotsApp.chat = messageInstance
     BotsApp.chatId = messageInstance.key.remoteJid || '';
     BotsApp.fromMe = messageInstance.key.fromMe;
-    BotsApp.owner = client.user.jid || '';
+    BotsApp.owner = client.user.id || '';
     BotsApp.mimeType = messageInstance.message ? Object.keys(messageInstance.message)[0] : null;
     BotsApp.type = BotsApp.mimeType === 'imageMessage' ? 'image' : (BotsApp.mimeType === 'videoMessage') ? 'video' : (BotsApp.mimeType === 'conversation' || BotsApp.mimeType == 'extendedTextMessage') ? 'text' : (BotsApp.mimeType === 'audioMessage') ? 'audio' : (BotsApp.mimeType === 'stickerMessage') ? 'sticker' : '';
     BotsApp.isReply = (BotsApp.mimeType === 'extendedTextMessage' && messageInstance.message.extendedTextMessage.hasOwnProperty('contextInfo') && messageInstance.message.extendedTextMessage.contextInfo.hasOwnProperty('stanzaId'));
@@ -40,7 +40,7 @@ exports.resolve = function(messageInstance, client, groupMetadata) {
     BotsApp.logGroup = client.user.jid || '';
     BotsApp.isGroup = BotsApp.chatId.endsWith('@g.us');
     BotsApp.isPm = !BotsApp.isGroup;
-    BotsApp.sender =  (BotsApp.isGroup && messageInstance.message && BotsApp.fromMe) ? BotsApp.owner : (BotsApp.isGroup && messageInstance.message) ? messageInstance.participant : (!BotsApp.isGroup) ? BotsApp.chatId: '';
+    BotsApp.sender =  (BotsApp.isGroup && messageInstance.message && BotsApp.fromMe) ? BotsApp.owner : (BotsApp.isGroup && messageInstance.message) ? messageInstance.participants : (!BotsApp.isGroup) ? BotsApp.chatId: '';
     BotsApp.groupName = BotsApp.isGroup ? groupMetadata.subject : '';
     BotsApp.groupMembers = BotsApp.isGroup ? groupMetadata.participants : '';
     BotsApp.groupAdmins = BotsApp.isGroup ? getGroupAdmins(BotsApp.groupMembers) : '';
