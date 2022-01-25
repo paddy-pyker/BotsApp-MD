@@ -84,6 +84,7 @@ module.exports = {
                     const re = new RegExp(criteria)
 
                     script = BotsApp.body.trim().split(re).slice(1)[0]
+                    console.log(script)
 
 
                     var program = {

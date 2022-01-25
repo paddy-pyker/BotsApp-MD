@@ -511,8 +511,8 @@
               },
               "BdpZaCZuh0gT9Q7Yi3zC1nMvi6EzuOH5Pj/aILO1lNYO": {
                 "chainKey": {
-                  "counter": 151,
-                  "key": "e1bLqnYqe92k/O6ta5g1ANvTwDOf73YYZIUrcgDe4mc="
+                  "counter": 157,
+                  "key": "yqXpZx6tswfqTj1INmLJLWipJv8CgH6bPifjelDfWD4="
                 },
                 "chainType": 1,
                 "messageKeys": {}
@@ -20239,8 +20239,8 @@
         {
           "senderKeyId": 1513262205,
           "senderChainKey": {
-            "iteration": 11,
-            "seed": "+Brus+OjvERKovOSqTr5/u6vaO6hohLV4bbwAd8FwDU="
+            "iteration": 18,
+            "seed": "/RFkKBaLtyr9mOTj3YuAYObUxvxBCH/uBj9Wtkb3yOQ="
           },
           "senderSigningKey": {
             "public": "BbXuwvOuGj+9jYYn7t4CoBJGFKoaUP3Z4QlXJldWHild",
@@ -20253,13 +20253,15 @@
         {
           "senderKeyId": 1782853580,
           "senderChainKey": {
-            "iteration": 8,
-            "seed": "x8sOT8wPc/xjtNv89iFqA7kWaog9BAL3QbD2wRa/bHE="
+            "iteration": 14,
+            "seed": "ozBkc6f1uaxq0bfC2xUOF3T0dkI0GniZQiCWLORww38="
           },
           "senderSigningKey": {
             "public": "Bex2GvtjGSLRtN7tKofOSz2SAJ7a+wnzbwQPnCBGnnNM"
           },
-          "senderMessageKeys": []
+          "senderMessageKeys": [
+            {}
+          ]
         }
       ]
     },
