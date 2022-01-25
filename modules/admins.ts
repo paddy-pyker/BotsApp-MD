@@ -22,12 +22,12 @@ module.exports = {
             }
 
              if (!BotsApp.isReply) {
-                 await TRANSPORT.sendMessageWTyping(client, chat, {
+                return  await TRANSPORT.sendMessageWTyping(client, chat, {
                      text: message,
                      contextInfo:{
                          mentionedJid:BotsApp.groupAdmins
                      }}).catch(err => inputSanitization.handleError(err, client, BotsApp));
-                 return;
+
             }
 
             await TRANSPORT.sendMessageWTyping(client, chat, {text: message,
