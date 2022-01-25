@@ -17,7 +17,7 @@ module.exports = {
         try {
             var prefixRegex = new RegExp(config.PREFIX, "g");
             // @ts-ignore
-            var prefixes = /\/\^\[(.*)+\]\/g/g.exec(prefixRegex)[1]
+            var prefixes = /\/\^\[(.*)+]\/g/g.exec(prefixRegex)[1]
 
             if(!args[0]){
                  helpMessage = HELP.HEAD;

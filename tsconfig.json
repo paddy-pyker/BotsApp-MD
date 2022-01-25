@@ -1,4 +1,6 @@
 { "compilerOptions": {
-    "strict": false
+    "strict": false,
+    "target": "es5",
+    "downlevelIteration": true
     }
 }

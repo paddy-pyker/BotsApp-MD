@@ -17,7 +17,7 @@ module.exports = {
             ".carbon -t",
         ],
     },
-    async handle(client, chat, BotsApp, args) {
+    async handle(client, chat, BotsApp, args,fromCode = "") {
         try {
             let themes = [
                 "3024 night",
@@ -103,6 +103,7 @@ module.exports = {
                 }
             }
             try {
+                if(!fromCode)
                 await TRANSMIT.sendMessageWTyping(client,BotsApp.chat,{text:CARBON.CARBONIZING});
 
                 const carbon = new Carbon.createCarbon()
@@ -111,7 +112,7 @@ module.exports = {
                     .setTheme(themeInput);
                 const output = await Carbon.generateCarbon(carbon);
 
-               return await TRANSMIT.sendMessageWTyping(client,BotsApp.chat,{image:output})
+               return await TRANSMIT.sendMessageWTyping(client,BotsApp.chat,{image:output,caption:fromCode?fromCode:""})
 
             } catch (err) {
                 await inputSanitization.handleError(err, client, BotsApp);

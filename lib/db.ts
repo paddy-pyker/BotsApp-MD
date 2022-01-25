@@ -52,14 +52,7 @@ const data = {
             "```This module can be used to check if the bot is currently online or not.\n\nExample usage,```\n*.alive*",
         ALIVE_MSG: "```💠 BotsApp has been integrated successfully. 💠\n\nUse the ```  *.help*  ``` command to get a list of plugins that will make your WhatsApp experience much easier.\n\nIf you are impressed with my service, consider supporting the Bot on GitHub-\n```https://github.com/BotsAppOfficial/BotsApp\n\n```Check out our official website for any new updates.```"
     },
-    block: {
-        DESCRIPTION: "Block contact",
-        EXTENDED_DESCRIPTION: "```Add the number to blocklist. You can reply to the person in group / pm or use .block <number>.```",
-        NUMBER_SYNTAX_ERROR:
-            "```Enter a valid contact number as per the syntax below:\n    1. XXXXXXXXXX\n    2. Tag the person\n    3. +YYXXXXXXXXXX (YY-Country Code, without zeros)```",
-        MESSAGE_NOT_TAGGED: "```Tag a message or enter a number to proceed.```",
-        NOT_BLOCK_BOT: "```Bot can not block itself```"
-    },
+
     carbon: {
         DESCRIPTION: "Convert text/code to a carbon image.",
         EXTENDED_DESCRIPTION: "```This module can be used to convert text/code into carbon images.\n\nExample Usage,```\n    *.carbon <text>* \n    *.carbon*  ```and reply to a text message.\n\nUse the -t flag after```  *.carbon*  ```to get the list of themes availble.\nIn order to specify the theme, use```  *.carbon <text> -t <theme>* .",
@@ -76,13 +69,14 @@ const data = {
         TAG_PERSON: "```Reply to the person that should be included in group```",
         GROUP_CREATED: "```Group has been created successfully.```"
     },
-    cpp: {
-        DESCRIPTION: "Execute C++ code and directly get output to WhatsApp.",
-        EXTENDED_DESCRIPTION: "```Use this module to execute C++ code and get the output directly on WhatsApp. To avoid errors, try to not use input.\nIn case you want to provide input, use the``` *-i flag* ```to provide input. Check out the example for an idea.```",
-        NO_INPUT: "```Give some C++ code to execute. Use the``` *.help cpp* ```command to get more info on this module.```",
-        BOILERPLATE: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main(){\n    {code}\n}",
-        OUTPUT_TEMPLATE: "⭐ *Output:*```\n{stdout}```\n\n⚠️ *Error:*```\n{stderr}```\n\n👨🏻‍💻 *Command:*```\n{code}```",
-        PROCESSING: "```Executing, please wait...```"
+    code: {
+        DESCRIPTION: "Execute code in a variety of languages and get output directly to WhatsApp.",
+        EXTENDED_DESCRIPTION: "```Use this module to execute code and get the output directly on WhatsApp. \n\nYou have the option to choose from a variety of languages you familiar with. Select the language with the``` *-a* ``` switch. Check out the example for an idea.```",
+        NO_INPUT: "```Please provide some code to execute.\n\n``````Use the``` *.help code* ```command to get more info on this module.```",
+        PROCESSING: "```Executing, please wait...```",
+        DAILY_LIMIT_REACHED:"```My brain is toast!🤯️ \n\n``` ```Come back tomorrow first thing in the morning```",
+        LANG_NOT_FOUND:"```Selected language not supported\n\nUse``` *.code -a* ```to view the list of supported languages```",
+        PARSE_FAILED: "```Parsing of the code was not successful, Pls refer to the help menu``` *.help code* ```for more info on how this command is used```"
     },
     decodeqr: {
         DESCRIPTION: "Decode QR code",
