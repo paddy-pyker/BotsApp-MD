@@ -6,7 +6,7 @@ const chalk = require('chalk');
 const wa = require('./core/helper')
 const TRANSMIT = require('./core/transmission')
 const STRINGS = require("./lib/db");
-const GENERAL = STRINGS.general;
+const alive = STRINGS.alive;
 
 
 const { state, saveState } = useSingleFileAuthState('./auth_info_multi.json')
@@ -37,7 +37,7 @@ const startSock = () => {
                 chalk.redBright.bold(`${file}`)
             )
             console.log(`[ERROR] `, error);
-            process.exit(-1)  /// TODO: comment this line after development
+            process.exit(-1)
         }
     }
 
@@ -89,7 +89,7 @@ const startSock = () => {
             }
         }
 
-        if(connection === 'open') sock.sendMessage(sock.user.id, {text: GENERAL.SUCCESSFUL_CONNECTION})
+        if(connection === 'open') sock.sendMessage(sock.user.id, {text: alive.ALIVE_MSG})
         
         console.log('connection update', update)
     })
