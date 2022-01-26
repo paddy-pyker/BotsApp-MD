@@ -5,6 +5,10 @@
   "scripts": {
     "start": "node -r ts-node/register main.ts"
   },
+  "engines": {
+    "npm": "please-use-yarn",
+    "yarn": ">= 1.19.1"
+  },
   "license": "MIT",
   "dependencies": {
     "@adiwajshing/baileys": "github:adiwajshing/baileys#multi-device",
