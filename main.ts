@@ -7,6 +7,7 @@ const wa = require('./core/helper')
 const TRANSMIT = require('./core/transmission')
 const STRINGS = require("./lib/db");
 const alive = STRINGS.alive;
+const http = require('http');
 
 
 const { state, saveState } = useSingleFileAuthState('./auth_info_multi.json')
@@ -93,6 +94,13 @@ const startSock = () => {
         
         console.log('connection update', update)
     })
+
+    http.createServer(function (req, res) {
+     res.writeHead(200, {'Content-Type': 'text/plain'});
+     res.write('Hello World!');
+     res.end();
+    }).listen(8089);
+
     // listen for when the auth credentials is updated
     sock.ev.on('creds.update', saveState)
 
