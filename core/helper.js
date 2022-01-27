@@ -1,14 +1,13 @@
-const config = require('../config')
-const BotsAppClass = require("../sidekick/sidekick")
-
-exports.resolve = function(messageInstance, client, groupMetadata) {
-    const BotsApp = new BotsAppClass();
-    const prefix = config.PREFIX + '\\w+'
-    const prefixRegex = new RegExp(prefix, 'g');
-    const jsonMessage = JSON.stringify(messageInstance)
+var config = require('../config');
+var BotsAppClass = require("../sidekick/sidekick");
+exports.resolve = function (messageInstance, client, groupMetadata) {
+    var BotsApp = new BotsAppClass();
+    var prefix = config.PREFIX + '\\w+';
+    var prefixRegex = new RegExp(prefix, 'g');
+    var jsonMessage = JSON.stringify(messageInstance);
     // console.log(messageInstance);
     // console.log(jsonMessage);
-    BotsApp.chat = messageInstance
+    BotsApp.chat = messageInstance;
     BotsApp.chatId = messageInstance.key.remoteJid || '';
     BotsApp.fromMe = messageInstance.key.fromMe;
     BotsApp.owner = client.user.id || '';
@@ -18,7 +17,7 @@ exports.resolve = function(messageInstance, client, groupMetadata) {
     BotsApp.replyMessageId = (BotsApp.isReply && messageInstance.message.extendedTextMessage.contextInfo) ? messageInstance.message.extendedTextMessage.contextInfo.stanzaId : '';
     BotsApp.replyMessage = (BotsApp.isReply && messageInstance.message.extendedTextMessage.contextInfo) ? messageInstance.message.extendedTextMessage.contextInfo.quotedMessage.conversation : '';
     BotsApp.replyParticipant = (BotsApp.isReply && messageInstance.message.extendedTextMessage.contextInfo) ? messageInstance.message.extendedTextMessage.contextInfo.participant : '';
-    BotsApp.body = BotsApp.mimeType === 'conversation' ? messageInstance.message.conversation : (BotsApp.mimeType == 'imageMessage') ? messageInstance.message.imageMessage.caption : (BotsApp.mimeType == 'videoMessage') ? messageInstance.message.videoMessage.caption : (BotsApp.mimeType == 'extendedTextMessage') ? messageInstance.message.extendedTextMessage.text : (BotsApp.mimeType == 'buttonsResponseMessage') ? messageInstance.message.buttonsResponseMessage.selectedDisplayText :'';
+    BotsApp.body = BotsApp.mimeType === 'conversation' ? messageInstance.message.conversation : (BotsApp.mimeType == 'imageMessage') ? messageInstance.message.imageMessage.caption : (BotsApp.mimeType == 'videoMessage') ? messageInstance.message.videoMessage.caption : (BotsApp.mimeType == 'extendedTextMessage') ? messageInstance.message.extendedTextMessage.text : (BotsApp.mimeType == 'buttonsResponseMessage') ? messageInstance.message.buttonsResponseMessage.selectedDisplayText : '';
     BotsApp.isCmd = prefixRegex.test(BotsApp.body);
     BotsApp.commandName = BotsApp.isCmd ? BotsApp.body.slice(1).trim().split(/ +/).shift().toLowerCase() : '';
     BotsApp.isImage = BotsApp.type === "image";
@@ -28,7 +27,7 @@ exports.resolve = function(messageInstance, client, groupMetadata) {
     BotsApp.isReplyGIF = BotsApp.isReply ? (jsonMessage.indexOf("videoMessage") !== -1 && messageInstance.message.extendedTextMessage.contextInfo.quotedMessage.videoMessage.gifPlayback) : false;
     BotsApp.isSticker = BotsApp.type === 'sticker';
     BotsApp.isReplySticker = BotsApp.isReply ? jsonMessage.indexOf("stickerMessage") !== -1 : false;
-    BotsApp.isReplyAnimatedSticker = BotsApp.isReplySticker ? messageInstance.message.extendedTextMessage.contextInfo.quotedMessage.stickerMessage.isAnimated :false;
+    BotsApp.isReplyAnimatedSticker = BotsApp.isReplySticker ? messageInstance.message.extendedTextMessage.contextInfo.quotedMessage.stickerMessage.isAnimated : false;
     BotsApp.isVideo = (BotsApp.type === 'video' && !messageInstance.message.videoMessage.gifPlayback);
     BotsApp.isReplyVideo = BotsApp.isReply ? (jsonMessage.indexOf("videoMessage") !== -1 && !messageInstance.message.extendedTextMessage.contextInfo.quotedMessage.videoMessage.gifPlayback) : false;
     BotsApp.isAudio = BotsApp.type === 'audio';
@@ -36,22 +35,20 @@ exports.resolve = function(messageInstance, client, groupMetadata) {
     BotsApp.logGroup = client.user.jid || '';
     BotsApp.isGroup = BotsApp.chatId.endsWith('@g.us');
     BotsApp.isPm = !BotsApp.isGroup;
-    BotsApp.sender =  (BotsApp.isGroup && messageInstance.message && BotsApp.fromMe) ? BotsApp.owner : (BotsApp.isGroup && messageInstance.message) ? messageInstance.participants : (!BotsApp.isGroup) ? BotsApp.chatId: '';
+    BotsApp.sender = (BotsApp.isGroup && messageInstance.message && BotsApp.fromMe) ? BotsApp.owner : (BotsApp.isGroup && messageInstance.message) ? messageInstance.participants : (!BotsApp.isGroup) ? BotsApp.chatId : '';
     BotsApp.groupName = BotsApp.isGroup ? groupMetadata.subject : '';
     BotsApp.groupMembers = BotsApp.isGroup ? groupMetadata.participants : '';
     BotsApp.groupAdmins = BotsApp.isGroup ? getGroupAdmins(BotsApp.groupMembers) : '';
     BotsApp.groupId = BotsApp.isGroup ? groupMetadata.id : '';
     BotsApp.isBotGroupAdmin = BotsApp.isGroup ? (BotsApp.groupAdmins.includes(BotsApp.owner)) : false;
     BotsApp.isSenderGroupAdmin = BotsApp.isGroup ? (BotsApp.groupAdmins.includes(BotsApp.sender)) : false;
-
     return BotsApp;
-}
-
-function getGroupAdmins(participants){
-    const admins = [];
-    for (const i in participants) {
+};
+function getGroupAdmins(participants) {
+    var admins = [];
+    for (var i in participants) {
         participants[i].admin ? admins.push(participants[i].id) : '';
     }
-   //  console.log("ADMINS -> " + admins);
+    //  console.log("ADMINS -> " + admins);
     return admins;
 }

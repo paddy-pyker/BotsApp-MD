@@ -4,7 +4,7 @@ const inputSanitization = require("../sidekick/input-sanitization");
 const config = require("../config");
 const TRANSMIT = require('../core/transmission')
 const HELP = Strings.help;
-const format = require("python-format-js");
+require('python-format-js');
 
 
 module.exports = {

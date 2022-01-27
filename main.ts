@@ -14,15 +14,15 @@ const { state, saveState } = useSingleFileAuthState('./auth_info_multi.json')
 // start a connection 
 const startSock = () => {
     
-    const sock = makeWASocket({
+    let sock = makeWASocket({
         printQRInTerminal: true,
         auth: state
     })
 
-    var commandHandler = new Map()
-    var moduleFiles = fs.readdirSync(join(__dirname, 'modules')).filter((file) => file.endsWith('.ts'))
-    var moduleSuccess = true
-    for (var file of moduleFiles) {
+    const commandHandler = new Map();
+    const moduleFiles = fs.readdirSync(join(__dirname, 'modules')).filter((file) => file.endsWith('.ts'));
+    let moduleSuccess = true;
+    for (const file of moduleFiles) {
         try {
             const command = require(join(__dirname, 'modules', `${file}`));
             console.log(
@@ -37,7 +37,7 @@ const startSock = () => {
                 chalk.redBright.bold(`${file}`)
             )
             console.log(`[ERROR] `, error);
-            process.exit(-1)
+            process.exit()
         }
     }
 
@@ -50,20 +50,20 @@ const startSock = () => {
         const sender = chat.key.remoteJid
         const groupMetaData = sender.endsWith("@g.us") ? await sock.groupMetadata(sender) : ''
 
-        var BotsApp = wa.resolve(chat,sock, groupMetaData);   
-        
+        const BotsApp = wa.resolve(chat, sock, groupMetaData);
+
         if(BotsApp.isCmd){
 
             console.log(chalk.redBright.bold(`[INFO] ${BotsApp.commandName} command received.`));
             const command = commandHandler.get(BotsApp.commandName);
-            var args = BotsApp.body.trim().split(/\s+/).slice(1);
+            const args = BotsApp.body.trim().split(/\s+/).slice(1);
 
             if (!command) {
                 await TRANSMIT.sendMessageWTyping(sock,BotsApp.chat,{text:"```Woops, invalid command! Use```  *.help*  ```to display the command list.```"});
                 return;
             } else if (command && BotsApp.commandName == "help") {
                 try {
-                    command.handle(sock, chat, BotsApp, args, commandHandler);
+                    await command.handle(sock, chat, BotsApp, args, commandHandler);
                     return;
                 } catch (err) {
                     console.log(chalk.red("[ERROR] ", err));
