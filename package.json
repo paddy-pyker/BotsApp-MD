@@ -1,9 +1,8 @@
 {
   "name": "botsapp-md",
   "version": "1.0.0",
-  "main": "main.ts",
   "scripts": {
-    "start": "node -r ts-node/register main.ts"
+    "start": "yarn && node -r ts-node/register main.ts"
   },
   "license": "MIT",
   "dependencies": {
