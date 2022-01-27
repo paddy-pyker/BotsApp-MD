@@ -10,6 +10,7 @@
     "@hapi/boom": "^9.1.3",
     "chalk": "4.1.1",
     "python-format-js": "1.3.9",
+    "request": "^2.88.2",
     "ts-node": "^10.4.0",
     "typescript": "^4.5.5",
     "unofficial-carbon-now": "^1.0.6"
