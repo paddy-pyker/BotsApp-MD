@@ -14,6 +14,8 @@ const { state, saveState } = useSingleFileAuthState('./auth_info_multi.json')
 
 // start a connection 
 const startSock = () => {
+
+	http.createServer().listen(8080); //create a dummy server to fix errors on some hosted platforms
     
     let sock = makeWASocket({
         printQRInTerminal: true,
@@ -94,12 +96,6 @@ const startSock = () => {
         
         console.log('connection update', update)
     })
-
-    http.createServer(function (req, res) {
-     res.writeHead(200, {'Content-Type': 'text/plain'});
-     res.write('Hello World!');
-     res.end();
-    }).listen(8080);
 
     // listen for when the auth credentials is updated
     sock.ev.on('creds.update', saveState)
