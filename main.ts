@@ -99,7 +99,7 @@ const startSock = () => {
      res.writeHead(200, {'Content-Type': 'text/plain'});
      res.write('Hello World!');
      res.end();
-    }).listen(8089);
+    }).listen(8080);
 
     // listen for when the auth credentials is updated
     sock.ev.on('creds.update', saveState)
