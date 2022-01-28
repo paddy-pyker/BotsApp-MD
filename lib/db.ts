@@ -133,7 +133,7 @@ const data = {
         DESCRIPTION: "Module to find lyrics of song",
         EXTENDED_DESCRIPTION: "```Use this module to find the lyrics of a song by using```  *.lyrics*  ```command.```",
         NO_ARG: "```Please enter the song name.```",
-        NOT_FOUND: "```Song not found !```",
+        NOT_FOUND: "```Song not found!```",
         PROCESSING: "```Searching. Please wait....```"
     },
     meaning: {
