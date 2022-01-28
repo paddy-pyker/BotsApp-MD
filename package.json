@@ -11,6 +11,7 @@
     "@hapi/boom": "^9.1.3",
     "chalk": "4.1.1",
     "fluent-ffmpeg": "2.1.2",
+    "google-dictionary-api": "1.0.8",
     "got": "11.8.2",
     "python-format-js": "1.3.9",
     "qrcode-terminal": "^0.12.0",
