@@ -27,6 +27,7 @@ const startSock = () => {
         auth: state
     })
 
+
     const commandHandler = new Map();
     const moduleFiles = fs.readdirSync(join(__dirname, 'modules')).filter((file) => file.endsWith('.ts'));
     let moduleSuccess = true;

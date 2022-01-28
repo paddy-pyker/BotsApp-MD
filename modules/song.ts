@@ -8,7 +8,6 @@ const inputSanitization = require("../sidekick/input-sanitization");
 const STRINGS = require("../lib/db");
 const SONG = STRINGS.song;
 const TRANSMIT = require('../core/transmission')
-const config = require('../config')
 
 module.exports = {
     name: "song",
@@ -24,7 +23,7 @@ module.exports = {
     },
     async handle(client, chat, BotsApp, args) {
 
-        const TEMP_FILE = config.TEMP_FILE_LOCATION + chat.key.id +".mp3"
+        const TEMP_FILE = "./"+ chat.key.id +".mp3"
 
         try {
             if (args.length === 0) {
