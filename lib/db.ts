@@ -340,7 +340,7 @@ const data = {
     yt: {
         DESCRIPTION: "Get recommendations and links from Youtube",
         EXTENDED_DESCRIPTION:
-            "```Get the first 10 recommendations from YouTube with their authorname, timestamp and link. Mention the keywords that are required to be searched along with the command.```",
+            "```Get the first 10 recommendations from YouTube with their author, name, timestamp and link. \n\nMention the keywords that are required to be searched along with the command.```",
         REPLY: "```Obtaining the recommendations...```",
         NO_VIDEOS: "```No videos could be found.```",
         ENTER_INPUT: "```Please enter the query you want to search for. Use the``` *.help yt* ```command for more info.```"
