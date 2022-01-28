@@ -251,7 +251,7 @@ const data = {
     },
     tr: {
         DESCRIPTION: "Language Translator",
-        EXTENDED_DESCRIPTION: "```Use```  *.tr <text> | <language>*  ```to translate text to the specified language. You can also reply to a text message with syntax```  *.tr <language>*  ```to translate text.\nIf you do not specify a language, it defaults to <English class=''></English>```",
+        EXTENDED_DESCRIPTION: "```Use```  *.tr <text> | <language>*  ```to translate text to the specified language. You can also reply to a text message with syntax```  *.tr <language>*  ```to translate text.\nIf you do not specify a language, it defaults to english ```",
         PROCESSING: "```Translating. Please wait...```",
         TOO_LONG: "*Total characters should be less than 4000.*\n```Total characters for current input were``` ```{}.```",
         LANGUAGE_NOT_SUPPORTED: "```Language is invalid.```",
