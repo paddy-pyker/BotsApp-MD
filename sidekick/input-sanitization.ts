@@ -1,4 +1,5 @@
 const chalk = require("chalk");
+const fs = require("fs");
 const TRANSMIT = require('../core/transmission')
 
 exports.handleError = async(err, client, BotsApp, customMessage =
@@ -8,4 +9,14 @@ exports.handleError = async(err, client, BotsApp, customMessage =
     await TRANSMIT.sendMessageWTyping(client,BotsApp.chat,{text:customMessage})
 }
 
+exports.deleteFiles = async (...locations) => {
+    for (location of locations) {
+        fs.unlink(location, (err) => {
+            if (err) console.log(err);
+            else {
+                 console.log("\nDeleted file at: " + location);
+            }
+        });
+    }
+};
 
