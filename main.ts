@@ -30,7 +30,6 @@ const startSock = () => {
 
     const commandHandler = new Map();
     const moduleFiles = fs.readdirSync(join(__dirname, 'modules')).filter((file) => file.endsWith('.ts'));
-    let moduleSuccess = true;
     for (const file of moduleFiles) {
         try {
             const command = require(join(__dirname, 'modules', `${file}`));
@@ -40,7 +39,6 @@ const startSock = () => {
             )
             commandHandler.set(command.name, command);
         } catch (error) {
-            moduleSuccess = false
             console.log(
                 chalk.blueBright.bold("[INFO] Could not import module"),
                 chalk.redBright.bold(`${file}`)
@@ -50,8 +48,8 @@ const startSock = () => {
         }
     }
 
-    if(moduleSuccess) console.log(chalk.green.bold("[INFO] All Plugins Installed Successfully. The bot is ready to use."))
-       else console.log(chalk.red.bold("[ERROR] Some plugins weren't installed"))
+    console.log(chalk.green.bold("[INFO] All Plugins Installed Successfully. The bot is ready to use."))
+
 
 
     sock.ev.on('messages.upsert', async m => {

@@ -261,7 +261,7 @@ const data = {
     },
     tts: {
         DESCRIPTION: "Text To Speech.",
-        EXTENDED_DESCRIPTION: "```Use```  *.tts <text>*  ```or```  *.tts <text> | <language_code>*  ```to convert text to speech.\nYou can also reply to a text message with syntax```  *.tr <language>*  ```to translate text.```",
+        EXTENDED_DESCRIPTION: "```Use```  *.tts <text>*  ```or```  *.tts <text> | <language_code>*  ```to convert text to speech.\nYou can also reply to a text message with syntax```  *.tts*  ```to convert to speech.```",
         PROCESSING: "```Converting text to speech. Please wait...```",
         TOO_LONG: "*Total characters should be less than 200.*\n```Total characters for current input were``` ```{}.```",
         INVALID_LANG_CODE: "*The Language Code was incorrect.*\n```The Language Code is generally the first two letters of the language you're trying to convert to.```",
