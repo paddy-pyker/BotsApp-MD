@@ -20,6 +20,8 @@ module.exports = {
                 let number = admin.split("@")[0];
                 message += `@${number} `;
             }
+            message += "\n\n*Group Owner:* @"+BotsApp.groupOwner.split("@")[0];
+
 
              if (!BotsApp.isReply) {
                 return  await TRANSPORT.sendMessageWTyping(client, chat, {

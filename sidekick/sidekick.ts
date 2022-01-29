@@ -33,12 +33,13 @@ class BotsApp {
     groupName: any;
     groupMembers: any;
     groupAdmins: any;
+    groupOwner: any;
     groupId: any;
     constructor(
         mimeType, type, isReply, body, isCmd, commandName,chat, chatId, fromMe, owner, logGroup,
         isGroup, isPm, sender, groupName, groupMembers, groupAdmins, groupId, isBotGroupAdmin, isSenderGroupAdmin, replyMessageId, replyMessage,
         replyParticipant, isImage, isReplyImage, imageCaption, isGIF, isReplyGIF, isSticker, isReplySticker, isReplyVideo, isReplyAudio,
-        isVideo, isAudio, isReplyAnimatedSticker) {
+        isVideo, isAudio, isReplyAnimatedSticker,groupOwner) {
         this.mimeType = mimeType;
         this.type = type;
         this.body = body;
@@ -73,6 +74,7 @@ class BotsApp {
         this.groupName = groupName;
         this.groupMembers = groupMembers;
         this.groupAdmins = groupAdmins;
+        this.groupOwner = groupOwner
         this.groupId = groupId;
     }
 }

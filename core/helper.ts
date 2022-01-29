@@ -40,6 +40,7 @@ exports.resolve = function(messageInstance, client, groupMetadata) {
     BotsApp.groupName = BotsApp.isGroup ? groupMetadata.subject : '';
     BotsApp.groupMembers = BotsApp.isGroup ? groupMetadata.participants : '';
     BotsApp.groupAdmins = BotsApp.isGroup ? getGroupAdmins(BotsApp.groupMembers) : '';
+    BotsApp.groupOwner = BotsApp.isGroup ? getGroupOwner(BotsApp.groupMembers) : '';
     BotsApp.groupId = BotsApp.isGroup ? groupMetadata.id : '';
     BotsApp.isBotGroupAdmin = BotsApp.isGroup ? (BotsApp.groupAdmins.includes(BotsApp.owner)) : false;
     BotsApp.isSenderGroupAdmin = BotsApp.isGroup ? (BotsApp.groupAdmins.includes(BotsApp.sender)) : false;
@@ -54,4 +55,15 @@ function getGroupAdmins(participants){
     }
    //  console.log("ADMINS -> " + admins);
     return admins;
+}
+
+function getGroupOwner(participants) {
+     let owner = ""
+    for (const i in participants){
+        if(participants[i].admin === 'superadmin') {
+            owner = participants[i].id
+            break
+        }
+    }
+    return owner
 }
