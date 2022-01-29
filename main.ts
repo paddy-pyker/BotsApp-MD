@@ -15,7 +15,7 @@ const { state, saveState } = useSingleFileAuthState('./auth_info_multi.json')
 // start a connection 
 const startSock = () => {
 
-    // create a dummy server to fix errors on some hosted platforms
+    //create a dummy server to fix errors on some hosted platforms
 	http.createServer(function (req, res) {
     res.writeHead(200, {'Content-Type': 'text/plain'});
     res.write('Welcome to Whatsapp Bot City!');
@@ -27,7 +27,7 @@ const startSock = () => {
         auth: state,
         getMessage: async key => {
             return {
-                conversation: '',
+                conversation: '.',
             }
         }
     })
