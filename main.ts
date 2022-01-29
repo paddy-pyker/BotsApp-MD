@@ -27,8 +27,7 @@ const startSock = () => {
         auth: state,
         getMessage: async key => {
             return {
-                conversation: 'hello',
-                key:key
+                conversation: '',
             }
         }
     })
