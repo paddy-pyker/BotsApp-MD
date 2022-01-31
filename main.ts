@@ -9,7 +9,7 @@ const STRINGS = require("./lib/db");
 const alive = STRINGS.alive;
 
 
-const { state, saveState } = useSingleFileAuthState('./auth_info_multi.json')
+const { state, saveState } = useSingleFileAuthState('/botsapp-md/auth_info_multi.json')
 
 // start a connection 
 const startSock = () => {
