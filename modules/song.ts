@@ -48,11 +48,11 @@ module.exports = {
             }
             try {
                 const stream = ytdl(Id, {
-                    quality: "highestaudio",
+                    quality: "lowestaudio",
                 });
 
                 ffmpeg(stream)
-                    .audioBitrate(320)
+                    .audioBitrate(128)
                     .toFormat("ipod")
                     .saveToFile(TEMP_FILE)
                     .on("end", async () => {
