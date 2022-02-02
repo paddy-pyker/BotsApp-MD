@@ -36,14 +36,14 @@ exports.resolve = function(messageInstance, client, groupMetadata) {
     BotsApp.logGroup = client.user.jid || '';
     BotsApp.isGroup = BotsApp.chatId.endsWith('@g.us');
     BotsApp.isPm = !BotsApp.isGroup;
-    BotsApp.sender =  (BotsApp.isGroup && messageInstance.message && BotsApp.fromMe) ? BotsApp.owner : (BotsApp.isGroup && messageInstance.message) ? messageInstance.participants : (!BotsApp.isGroup) ? BotsApp.chatId: '';
+    BotsApp.sender =  (BotsApp.isGroup && messageInstance.message && BotsApp.fromMe) ? BotsApp.owner : (BotsApp.isGroup && messageInstance.message) ? messageInstance.key.participant : (!BotsApp.isGroup) ? BotsApp.chatId: '';
     BotsApp.groupName = BotsApp.isGroup ? groupMetadata.subject : '';
     BotsApp.groupMembers = BotsApp.isGroup ? groupMetadata.participants : '';
     BotsApp.groupAdmins = BotsApp.isGroup ? getGroupAdmins(BotsApp.groupMembers) : '';
     BotsApp.groupOwner = BotsApp.isGroup ? getGroupOwner(BotsApp.groupMembers) : '';
     BotsApp.groupId = BotsApp.isGroup ? groupMetadata.id : '';
-    BotsApp.isBotGroupAdmin = BotsApp.isGroup ? (BotsApp.groupAdmins.includes(BotsApp.owner)) : false;
-    BotsApp.isSenderGroupAdmin = BotsApp.isGroup ? (BotsApp.groupAdmins.includes(BotsApp.sender)) : false;
+    BotsApp.isBotGroupAdmin = BotsApp.isGroup ? (BotsApp.groupAdmins.includes(BotsApp.owner.replace(/:../,''))) : false;
+    BotsApp.isSenderGroupAdmin = BotsApp.isGroup ? (BotsApp.groupAdmins.includes(BotsApp.sender.replace(/:../,''))) : false;
 
     return BotsApp;
 }

@@ -90,7 +90,7 @@ const data = {
         EXTENDED_DESCRIPTION:
             "```Use this module to demote a person from admin by entering the person's mobile number. Valid Syntaxes -\n    1. XXXXXXXXXX\n    2. YYXXXXXXXXXX ()\n\nFor example``` -\n*.demote 9861212121*",
         NOT_A_GROUP: "```This command is only applicable for group chats.```",
-        BOT_NOT_ADMIN: "```Sorry, dont have the permission to do so since I am not an admin.```",
+        BOT_NOT_ADMIN: "```Sorry, command reserved for admins only.```",
         PERSON_NOT_IN_GROUP: "```Person not found.```",
         MESSAGE_NOT_TAGGED:
             "```Reply/tag/enter contact number of the person to be demoted.```"
