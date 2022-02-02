@@ -19,6 +19,7 @@ module.exports = {
 
             let fileName
 
+            console.log(chat.message)
             if (BotsApp.isImage) {
                  fileName = "img-" + chat.key.id + ".jpeg";
                 const download_object = {

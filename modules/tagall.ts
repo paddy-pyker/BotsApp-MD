@@ -20,6 +20,10 @@ module.exports = {
                 return await TRANSMIT.sendMessageWTyping(client, BotsApp.chat, {text: STRINGS.general.NOT_A_GROUP});
 
             }
+            if(!(BotsApp.fromMe || BotsApp.isSenderGroupAdmin)){
+                return await TRANSMIT.sendMessageWTyping(client, BotsApp.chat, {text: STRINGS.demote.BOT_NOT_ADMIN});
+
+            }
             let members = [];
             for (var i = 0; i < BotsApp.groupMembers.length; i++) {
                 members[i] = BotsApp.groupMembers[i].id;
