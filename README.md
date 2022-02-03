@@ -28,7 +28,7 @@ To run the bot on your device manually, you can use the following commands -
 ```bash
 git clone https://github.com/Paddy-Pyker/BotsApp-MD.git
 cd BotsApp-MD
-npm start
+yarn start
 ```
 ## Inspiration
 - [Baileys Multi-Device Library](https://github.com/adiwajshing/Baileys)
