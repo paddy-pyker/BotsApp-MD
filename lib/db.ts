@@ -50,7 +50,7 @@ const data = {
         DESCRIPTION: "Check if bot is online.",
         EXTENDED_DESCRIPTION:
             "```This module can be used to check if the bot is currently online or not.\n\nExample usage,```\n*.alive*",
-        ALIVE_MSG: "```💠 BotsApp has been integrated successfully. 💠\n\nUse the ```  *.help*  ``` command to get a list of plugins that will make your WhatsApp experience much easier.\n\nCheck out the Bot of Github ```\n\n" + "https://github.com/Paddy-Pyker/BotsApp-MD/"
+        ALIVE_MSG: "```💠 BotsApp has been integrated successfully. 💠\n\nUse the ```  *.help*  ``` command to get a list of plugins that will make your WhatsApp experience much easier.\n\nCheck out the Bot on Github ```\n\n" + "https://github.com/Paddy-Pyker/BotsApp-MD/"
     },
 
     carbon: {
