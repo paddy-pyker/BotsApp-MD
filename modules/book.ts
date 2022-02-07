@@ -92,7 +92,7 @@ module.exports = {
 
                 })
 
-                filename = temp('h1').text() + ".pdf"
+                filename = temp('h1').text().replace(/\W+/g,'_') + ".pdf"
 
                 await  TRANSMIT.sendMessageWTyping(client,BotsApp.chat,{text:BOOK.DOWNLOADING_BOOK})
 
