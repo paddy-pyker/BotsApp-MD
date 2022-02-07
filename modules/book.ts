@@ -16,7 +16,7 @@ module.exports = {
         text: [
             ".book 9781430258636",
             ".book 978-18-78707-52-9",
-            ".book 0130463469"
+            ".book 0-7645-3537-4"
         ],
     },
     async handle(client, chat, BotsApp, args) {
@@ -25,14 +25,17 @@ module.exports = {
             if (args.length === 0)
                 return  await  TRANSMIT.sendMessageWTyping(client,BotsApp.chat,{text:BOOK.NO_INPUT})
 
-            await  TRANSMIT.sendMessageWTyping(client,BotsApp.chat,{text:BOOK.SEARCHING_BOOK})
 
             const isbn = args[0].replace('-','')
+            console.log(isbn)
+
             var regex=/^[0-9]+X?$/;
             if (!isbn.match(regex) || !(isbn.length == 10 || isbn.length == 13))
             {
                 return  await  TRANSMIT.sendMessageWTyping(client,BotsApp.chat,{text:BOOK.INVALID_INPUT})
             }
+
+            await  TRANSMIT.sendMessageWTyping(client,BotsApp.chat,{text:BOOK.SEARCHING_BOOK})
 
             const url = "http://libgen.is/search.php?req=" + isbn;
 
