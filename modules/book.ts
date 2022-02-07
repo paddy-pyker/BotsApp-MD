@@ -16,7 +16,7 @@ module.exports = {
         text: [
             ".book 9781430258636",
             ".book 978-18-78707-52-9",
-            ".book Beginning Python: From Novice to Professional"
+            ".book 0130463469"
         ],
     },
     async handle(client, chat, BotsApp, args) {
@@ -27,8 +27,14 @@ module.exports = {
 
             await  TRANSMIT.sendMessageWTyping(client,BotsApp.chat,{text:BOOK.SEARCHING_BOOK})
 
-            const isbn_or_name = args[0].replace('-','')
-            const url = "http://libgen.is/search.php?req=" + isbn_or_name;
+            const isbn = args[0].replace('-','')
+            var regex=/^[0-9]+X?$/;
+            if (!isbn.match(regex) || !(isbn.length == 10 || isbn.length == 13))
+            {
+                return  await  TRANSMIT.sendMessageWTyping(client,BotsApp.chat,{text:BOOK.INVALID_INPUT})
+            }
+
+            const url = "http://libgen.is/search.php?req=" + isbn;
 
             let download_url = ""   //main url of book to be downloaded to disk
             let filename = "" // name of downloaded file
