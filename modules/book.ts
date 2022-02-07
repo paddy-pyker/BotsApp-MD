@@ -26,7 +26,7 @@ module.exports = {
                 return  await  TRANSMIT.sendMessageWTyping(client,BotsApp.chat,{text:BOOK.NO_INPUT})
 
 
-            const isbn = args[0].replace('-','')
+            const isbn = args[0].replace(/-/g,'')
             console.log(isbn)
 
             var regex=/^[0-9]+X?$/;
