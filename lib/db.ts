@@ -53,6 +53,16 @@ const data = {
         ALIVE_MSG: "```💠 BotsApp has been integrated successfully. 💠\n\nUse the ```  *.help*  ``` command to get a list of plugins that will make your WhatsApp experience much easier.\n\nCheck out the Bot on Github ```\n\n" + "https://github.com/Paddy-Pyker/BotsApp-MD/"
     },
 
+    book:{
+        DESCRIPTION:"Download Science and Technology books",
+        EXTENDED_DESCRIPTION:"```This module is used to download Sci-Tech books by providing the ISBN 10 or ISBN 13 digits of the book.```\n\n```You may also use the exact name of the book in place of the ISBN digits```\n\n```However,its strongly recommended to stick with the ISBN digits to get an accurate results```\n\n```You can google the name of the paid book to get the ISBN ```",
+        BOOK_NOT_FOUND:"```Sorry dude! book not found in my catalogue```\n\n```Try purchasing the real book on amazon to support the authors```",
+        NO_INPUT:"```ISBN of book NOT provided```",
+        DOWNLOADING_BOOK:"```Hang tight! Your book is downloading```",
+        UPLOADING_BOOK:"```Uploading book```",
+        SEARCHING_BOOK:"```Searching for book...```"
+    },
+
     carbon: {
         DESCRIPTION: "Convert text/code to a carbon image.",
         EXTENDED_DESCRIPTION: "```This module can be used to convert text/code into carbon images.\n\nExample Usage,```\n    *.carbon <text>* \n    *.carbon*  ```and reply to a text message.\n\nUse the -t flag after```  *.carbon*  ```to get the list of themes availble.\nIn order to specify the theme, use```  *.carbon <text> -t <theme>* .",
@@ -76,7 +86,7 @@ const data = {
         PROCESSING: "```Executing, please wait...```",
         DAILY_LIMIT_REACHED:"```My brain is toast!🤯️ \n\n``` ```Come back tomorrow first thing in the morning```",
         LANG_NOT_FOUND:"```Selected language not supported\n\nUse``` *.code -a* ```to view the list of supported languages```",
-        PARSE_FAILED: "```Parsing of the code was not successful, Pls refer to the help menu``` *.help code* ```for more info on how this command is used```"
+        PARSE_FAILED: "```Parsing of the code was not successful, check if language input was provided Pls refer to the help menu``` *.help code* ```for more info on how this command is used```"
     },
     decodeqr: {
         DESCRIPTION: "Decode QR code",
@@ -117,7 +127,7 @@ const data = {
         DESCRIPTION: "Get the command list and info on modules",
         EXTENDED_DESCRIPTION:
             "This module is used to get info on other modules and their triggers.",
-        HEAD: "🌀 *BotsApp Menu* 🌀\n```Use .help command for detailed info on a module.```",
+        HEAD: "🌀 *BotsApp Menu* 🌀\n\n```Use``` *.help [command name]* ```for detailed info on a module.```",
         TEMPLATE: "\n\n🤖 *Command* - ```{}```\n💡 *Info* - ```{}```",
         COMMAND_INTERFACE: "🌀 *BotsApp Command Interface* 🌀\n\n",
         COMMAND_INTERFACE_TEMPLATE: "💠 *Triggers -* ```{}```\n📚 *Info -* {}",
