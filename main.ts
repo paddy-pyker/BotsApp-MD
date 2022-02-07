@@ -9,7 +9,7 @@ const STRINGS = require("./lib/db");
 const alive = STRINGS.alive;
 
 
-const { state, saveState } = useSingleFileAuthState('auth_info_multi.json')
+const { state, saveState } = useSingleFileAuthState('/etc/botsapp-md/auth_info_multi.json')
 
 // start a connection 
 const startSock = () => {
@@ -46,7 +46,6 @@ const startSock = () => {
 
     sock.ev.on('messages.upsert', async m => {
         const chat = m.messages[0]
-        console.log(chat.message.extendedTextMessage.contextInfo)
         const sender = chat.key.remoteJid
         const groupMetaData = sender.endsWith("@g.us") ? await sock.groupMetadata(sender) : ''
 
