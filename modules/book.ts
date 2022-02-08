@@ -43,9 +43,10 @@ module.exports = {
             let filename = "" // name of downloaded file
 
             try {
-                const data1 = await axios.get(url);
+                const { data } = await axios.get(url);
+                console.log(data)
+                const $ = cheerio.load(data);
                 let foundbooks = new Map();
-                const $ = cheerio.load(data1.data);
 
                 $('a').attr('href',function(index,currentvalue){
 
