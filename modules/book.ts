@@ -43,9 +43,9 @@ module.exports = {
             let filename = "" // name of downloaded file
 
             try {
-                const { data } = await axios.get(url);
-                const $ = cheerio.load(data);
+                const data1 = await axios.get(url);
                 let foundbooks = new Map();
+                const $ = cheerio.load(data1.data);
 
                 $('a').attr('href',function(index,currentvalue){
 
@@ -54,7 +54,7 @@ module.exports = {
                         const book_metadata = $(`a[href=${currentvalue}]`)[0].parent.prev.prev
                         const type = book_metadata.children[0].data
                         const size = book_metadata.prev.prev.children[0].data
-                        const pages = book_metadata.prev.prev.prev.prev.prev.prev.children[0].data?book_metadata.prev.prev.prev.prev.prev.prev.children[0].data:-1
+                        const pages = book_metadata.prev.prev.prev.prev.prev.prev.children[0].data
 
                         const book = {
                             url: "",
