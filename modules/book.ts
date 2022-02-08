@@ -54,7 +54,7 @@ module.exports = {
                         const type = book_metadata.children[0].data
                         const size = book_metadata.prev.prev.children[0].data
                         //console.log(book_metadata.prev.prev.prev.prev.prev.prev.children[0].data)
-                        const pages = "3"//book_metadata.prev.prev.prev.prev.prev.prev.children[0].data
+                        const pages = book_metadata.prev.prev.prev.prev.prev.prev.children[0].data
 
                         const book = {
                             url: undefined,
