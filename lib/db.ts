@@ -55,7 +55,7 @@ const data = {
 
     book:{
         DESCRIPTION:"Download Science and Technology books",
-        EXTENDED_DESCRIPTION:"```This module is used to download Sci-Tech books by providing the ISBN 10 or ISBN 13 digits of the book.```\n\n```You can google the name of the paid book to get the ISBN ```",
+        EXTENDED_DESCRIPTION:"```This module is used to download Sci-Tech books by providing the ISBN digits of the book.```\n\n```You can google the name of the paid book to get the ISBN ```",
         BOOK_NOT_FOUND:"```Sorry dude! book not found in my catalogue```\n\n```Try purchasing the real book on amazon to support the authors```",
         NO_INPUT:"```Include the ISBN in the command```",
         DOWNLOADING_BOOK:"```Hang tight! Your book is downloading```",
