@@ -54,6 +54,7 @@ module.exports = {
                         const book_metadata = $(`a[href=${currentvalue}]`)[0].parent.prev.prev
                         const type = book_metadata.children[0].data
                         const size = book_metadata.prev.prev.children[0].data
+                        console.log(book_metadata.prev.prev.prev.prev.prev.prev.children[0].data)
                         const pages = "3"//book_metadata.prev.prev.prev.prev.prev.prev.children[0].data
 
                         const book = {
