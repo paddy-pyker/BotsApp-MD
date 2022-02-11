@@ -64,6 +64,9 @@ module.exports = {
 
             await  TRANSMIT.sendMessageWTyping(client,BotsApp.chat,{document:{url:book["downloaded_book_location"]},fileName:file_name,mimetype:mimeType,pageCount:book["pages"]?book["pages"]:""}).catch(err => inputSanitization.handleError(err, client, BotsApp));
 
+            if(book["extension"] === "EPUB")
+                await TRANSMIT.sendMessageWTyping(client,BotsApp.chat,{text:"```Go grab yourself an epub reader from playstore and enjoy 😋️```"})
+
             return await inputSanitization.deleteFiles(book["downloaded_book_location"])
 
 
