@@ -56,10 +56,11 @@ module.exports = {
                 "\n*Extension :* " + book["extension"] +
                 "\n\n*Description :* " + book["description"]
 
+            const file_name = book["name"].replace(/\W/g,'_') + "."+ book["extension"].toLowerCase()
 
             await  TRANSMIT.sendMessageWTyping(client,BotsApp.chat,{image:{url:book["cover"]},caption:caption,thumbnail:null})
 
-            await  TRANSMIT.sendMessageWTyping(client,BotsApp.chat,{document:{url:book["downloaded_book_location"]},fileName:book["name"] + book["extension"].toLowerCase(),pageCount:book["pages"]?book["pages"]:""}).catch(err => inputSanitization.handleError(err, client, BotsApp));
+            await  TRANSMIT.sendMessageWTyping(client,BotsApp.chat,{document:{url:book["downloaded_book_location"]},fileName:file_name,pageCount:book["pages"]?book["pages"]:""}).catch(err => inputSanitization.handleError(err, client, BotsApp));
 
             return await inputSanitization.deleteFiles(book["downloaded_book_location"])
 
