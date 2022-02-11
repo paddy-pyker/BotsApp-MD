@@ -54,14 +54,12 @@ const data = {
     },
 
     book:{
-        DESCRIPTION:"Download Science and Technology books",
-        EXTENDED_DESCRIPTION:"```This module is used to download Sci-Tech books by providing the ISBN digits of the book.```\n\n```You can google the name of the paid book to get the ISBN ```",
+        DESCRIPTION:"Download pirated books",
+        EXTENDED_DESCRIPTION:"```This module is used to download pirated books by providing either the EXACT name or the ISBN digits of the book.```\n\n```Its highly recommended to use the ISBN to get more accurate results\nYou can google the name of the paid book to get the ISBN ```",
         BOOK_NOT_FOUND:"```Sorry dude! book not found in my catalogue```\n\n```Try purchasing the real book on amazon to support the authors```",
-        NO_INPUT:"```Include the ISBN in the command```",
+        NO_INPUT:"```Include the EXACT name or ISBN of the book in the command```",
         DOWNLOADING_BOOK:"```Hang tight! Your book is downloading```",
-        UPLOADING_BOOK:"```Uploading book```",
-        SEARCHING_BOOK:"```Searching for book...```",
-        INVALID_INPUT:"```ISBN is invalid```"
+        SEARCHING_BOOK:"```Searching for book...```"
     },
 
     carbon: {

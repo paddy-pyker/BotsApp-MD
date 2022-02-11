@@ -28,7 +28,7 @@ module.exports = {
                 return;
             }
             helpMessage = HELP.COMMAND_INTERFACE;
-            var command = commandHandler.get(args[0])
+            var command = commandHandler.get(args[0].toLowerCase())
             if(command){
                 var triggers = "\n"
                 prefixes.split("").forEach(prefix => {
