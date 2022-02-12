@@ -47,6 +47,7 @@ module.exports = {
 
             const year = book["year"] ? book["year"] : "N/A"
             const publisher = book["publisher"] ? book["publisher"] : "N/A"
+            const pages = book["pages"] ? book["pages"] : "N/A"
             const language = book["language"] ? book["language"] : "N/A"
             const isbn10 = book["ISBN 10"] ? book["ISBN 10"] : "N/A"
             const isbn13 = book["ISBN 13"] ? book["ISBN 13"] : "N/A"
@@ -57,6 +58,7 @@ module.exports = {
                 "*Name :* " + book["name"] +
                 "\n*Year :* " + year +
                 "\n*Publisher :* " + publisher +
+                "\n*Pages :* " + pages +
                 "\n*Language :* " + language +
                 "\n*ISBN 10 :* " + isbn10 +
                 "\n*ISBN 13 :* " + isbn13 +
