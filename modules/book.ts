@@ -47,14 +47,14 @@ module.exports = {
 
             const caption =
                 "*Name :* " + book["name"] +
-                "\n*Year :* " + book["year"] +
-                "\n*Publisher :* " + book["publisher"] +
-                "\n*Language :* " + book["language"] +
-                "\n*ISBN 10 :* " + book["ISBN 10"] +
-                "\n*ISBN 13 :* " + book["ISBN 13"] +
-                "\n*Categories :* " + book["categories"] +
+                "\n*Year :* " + book["year"] ? book["year"] : "N/A" +
+                "\n*Publisher :* " + book["publisher"] ? book["publisher"] : "N/A" +
+                "\n*Language :* " + book["language"] ? book["language"] : "N/A" +
+                "\n*ISBN 10 :* " + book["ISBN 10"] ? book["ISBN 10"] : "N/A" +
+                "\n*ISBN 13 :* " + book["ISBN 13"] ? book["ISBN 13"] : "N/A" +
+                "\n*Categories :* " + book["categories"] ? book["categories"] : "N/A" +
                 "\n*Extension :* " + book["extension"] +
-                "\n\n*Description :* " + book["description"]
+                "\n\n*Description :* " + book["description"] ? book["description"] : "N/A"
 
             const file_name = book["name"].replace(/\W/g,'_') + "."+ book["extension"].toLowerCase()
 
@@ -65,7 +65,7 @@ module.exports = {
             await  TRANSMIT.sendMessageWTyping(client,BotsApp.chat,{document:{url:book["downloaded_book_location"]},fileName:file_name,mimetype:mimeType,pageCount:book["pages"]?book["pages"]:""}).catch(err => inputSanitization.handleError(err, client, BotsApp));
 
             if(book["extension"] === "EPUB")
-                await TRANSMIT.sendMessageWTyping(client,BotsApp.chat,{text:"```Go grab yourself an epub reader from playstore and enjoy 😋️```"})
+                await TRANSMIT.sendMessageWTyping(client,BotsApp.chat,{text:"```Go grab an epub reader from playstore and enjoy 😋️```"})
 
             return await inputSanitization.deleteFiles(book["downloaded_book_location"])
 

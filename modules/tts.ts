@@ -38,7 +38,7 @@ module.exports = {
                     host: 'https://translate.google.com',
                 });
                 // console.log(url);
-                await TRANSMIT.sendMessageWTyping(client, BotsApp.chat, {audio:{url:url},mimetype: 'audio/mp4'}).catch(err => inputSanitization.handleError(err, client, BotsApp));
+                await TRANSMIT.sendMessageWTyping(client, BotsApp.chat, {audio:{url:url},mimetype: 'audio/mpeg'}).catch(err => inputSanitization.handleError(err, client, BotsApp));
 
             }
             catch (err) {
