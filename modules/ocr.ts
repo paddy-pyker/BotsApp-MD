@@ -13,6 +13,7 @@ module.exports = {
     name: "ocr",
     description: OCR.DESCRIPTION,
     extendedDescription: OCR.EXTENDED_DESCRIPTION,
+    demo: {isEnabled: false},
     async handle(client, chat, BotsApp, args) {
         try {
             await TRANSMIT.sendMessageWTyping(client, BotsApp.chat, {text: OCR.PROCESSING})

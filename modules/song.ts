@@ -30,22 +30,20 @@ module.exports = {
                 return await TRANSMIT.sendMessageWTyping(client, BotsApp.chat, {text: SONG.ENTER_SONG}).catch(err => inputSanitization.handleError(err, client, BotsApp));
             }
 
-            await TRANSMIT.sendMessageWTyping(client, BotsApp.chat, {text: SONG.DOWNLOADING}).catch(err => inputSanitization.handleError(err, client, BotsApp));
-
-
             // Task starts here
             let Id = " ";
-            if (args[0].includes("youtu")) {
-                Id = args[0];
-
-            } else {
-                let song = await yts(args.join(" "));
-                song = song.all;
-                if (song.length < 1) {
+                let video = await yts(args.join(" "));
+                video = video.videos;
+                if (video.length < 1) {
                     return await TRANSMIT.sendMessageWTyping(client, BotsApp.chat, {text: SONG.SONG_NOT_FOUND}).catch(err => inputSanitization.handleError(err, client, BotsApp));
                 }
-                Id = song[0].url;
-            }
+
+                if(video[0].duration.seconds > 600) return
+
+            await TRANSMIT.sendMessageWTyping(client, BotsApp.chat, {text: SONG.DOWNLOADING}).catch(err => inputSanitization.handleError(err, client, BotsApp));
+
+            Id = video[0].url;
+
             try {
                 const stream = ytdl(Id, {
                     quality: "lowestaudio",

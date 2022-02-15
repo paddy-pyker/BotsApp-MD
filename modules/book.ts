@@ -72,13 +72,24 @@ module.exports = {
 
             await  TRANSMIT.sendMessageWTyping(client,BotsApp.chat,{image:{url:book["cover"]},caption:caption,thumbnail:null})
 
-            await  TRANSMIT.sendMessageWTyping(client,BotsApp.chat,{document:{url:book["downloaded_book_location"]},fileName:file_name,mimetype:mimeType,pageCount:book["pages"]?book["pages"]:""}).catch(err => inputSanitization.handleError(err, client, BotsApp));
+            await  TRANSMIT.sendMessageWTyping(client,BotsApp.chat,{
+                document:{url:book["downloaded_book_location"]},
+                fileName:file_name,
+                mimetype:mimeType,
+                pageCount:book["pages"]?book["pages"]:""
+            }).catch(err => inputSanitization.handleError(err, client, BotsApp));
 
-            if(book["extension"] === "EPUB")
-                await TRANSMIT.sendMessageWTyping(client,BotsApp.chat,{text:"```Go grab an epub reader from playstore and enjoy 😋️```"})
+            if(book["extension"] === "EPUB") {
 
+                await  TRANSMIT.sendMessageWTyping(client,BotsApp.chat,{text:"```Install this free EPUB reader to read your book```"})
+
+                await TRANSMIT.sendMessageWTyping(client, BotsApp.chat, {
+                    document: {url: './zlibrary/epub_reader.apk'},
+                    fileName: 'epub_reader.apk',
+                    mimetype: 'application/vnd.android.package-archive'
+                }).catch(err => inputSanitization.handleError(err, client, BotsApp));
+            }
             return await inputSanitization.deleteFiles(book["downloaded_book_location"])
-
 
         } catch (err) {
             await inputSanitization.handleError(err, client, BotsApp);
