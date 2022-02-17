@@ -16,7 +16,8 @@ const startSock = () => {
     
     let sock = makeWASocket({
         printQRInTerminal: true,
-        auth: state
+        auth: state,
+        version:[2,2204,13]
     })
 
 
