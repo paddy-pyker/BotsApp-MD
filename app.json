@@ -12,7 +12,7 @@
   "success_url": "",
   "stack": "container",
   "formation": {
-    "botsapp_md": {
+    "botsapp": {
         "quantity": 1,
         "size": "free"
     }
