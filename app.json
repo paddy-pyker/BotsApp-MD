@@ -1,0 +1,20 @@
+{
+  "name": "BotsApp-MD",
+  "description": "The most user friendly and easy to use WhatsApp bot.",
+  "keywords": [
+      "Whatsapp",
+      "WhatsApp bot",
+      "BotsApp-MD",
+      "nodejs"
+  ],
+  "repository": "https://github.com/Paddy-Pyker/BotsApp-MD",
+  "website": "",
+  "success_url": "",
+  "stack": "container",
+  "formation": {
+    "botsapp_md": {
+        "quantity": 1,
+        "size": "free"
+    }
+}
+}
