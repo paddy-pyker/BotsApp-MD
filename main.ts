@@ -82,11 +82,11 @@ const startSock = () => {
         const { connection, lastDisconnect } = update
         if(connection === 'close') {
             // reconnect if not logged out
-            if((lastDisconnect.error as Boom)?.output?.statusCode !== DisconnectReason.loggedOut) {
+           // if((lastDisconnect.error as Boom)?.output?.statusCode !== DisconnectReason.loggedOut) {
                 startSock()
-            } else {
-                console.log('connection closed')
-            }
+           // } else {
+          //      console.log('connection closed')
+          //  }
         }
 
         if(connection === 'open') sock.sendMessage(sock.user.id, {text: alive.ALIVE_MSG})
