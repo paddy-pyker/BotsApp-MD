@@ -2,7 +2,7 @@
   "name": "botsapp-md",
   "version": "1.0.0",
   "scripts": {
-    "start": "yarn && node -r ts-node/register main.ts"
+    "start": "node -r ts-node/register sidekick/getauth.ts && node -r ts-node/register main.ts"
   },
   "license": "MIT",
   "dependencies": {
