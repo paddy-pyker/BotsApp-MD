@@ -1,5 +1,4 @@
-import { Boom } from "@hapi/boom"
-import makeWASocket, { DisconnectReason, useSingleFileAuthState} from "@adiwajshing/baileys"
+import makeWASocket, {useSingleFileAuthState} from "@adiwajshing/baileys"
 import { join } from 'path';
 const fs = require('fs')
 const chalk = require('chalk');
@@ -17,6 +16,7 @@ const startSock = () => {
     let sock = makeWASocket({
         printQRInTerminal: true,
         auth: state,
+        browser:["BotsApp-MD","Chrome","10.0"],
         version:[2,2204,13]
     })
 
@@ -79,14 +79,10 @@ const startSock = () => {
     })
 
     sock.ev.on('connection.update', (update) => {
-        const { connection, lastDisconnect } = update
+        const { connection} = update
+        
         if(connection === 'close') {
-            // reconnect if not logged out
-           // if((lastDisconnect.error as Boom)?.output?.statusCode !== DisconnectReason.loggedOut) {
-                startSock()
-           // } else {
-          //      console.log('connection closed')
-          //  }
+            startSock()
         }
 
         if(connection === 'open') sock.sendMessage(sock.user.id, {text: alive.ALIVE_MSG})
