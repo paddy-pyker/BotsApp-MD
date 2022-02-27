@@ -108,6 +108,18 @@ const data = {
         DESCRIPTION: "Toggle disappearing messages",
         EXTENDED_DESCRIPTION: "```Toggle disappearing messages by using command``` *.dissapear* ."
     },
+    disable:{
+        DESCRIPTION: "Disable bot in a chat or group",
+        EXTENDED_DESCRIPTION: "```Disable bot in a chat or group by using ``` *.disable* .",
+        DISABLED:"```BOT DISABLED HERE SUCCESSFULLY```",
+        ALREADY_DISABLED:"```BOT ALREADY DISABLED```"
+    },
+    enable:{
+        DESCRIPTION: "Enable bot in a chat or group",
+        EXTENDED_DESCRIPTION: "```Enable bot in a chat or group by using ``` *.enable* .",
+        ENABLED:"```BOT ENABLED HERE SUCCESSFULLY```",
+        ALREADY_ENABLED:"```BOT ALREADY ENABLED```"
+    },
     getdp: {
         DESCRIPTION: "Get display picture",
         EXTENDED_DESCRIPTION: "```Get the profile picture of the group in a group conversation or the profile picture of BotsApp itself in personal chat. \n\nTag a person in a group with``` *@* ```to get their profile picture.```",

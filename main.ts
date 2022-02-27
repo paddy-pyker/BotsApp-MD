@@ -1,5 +1,6 @@
 import makeWASocket, {useSingleFileAuthState} from "@adiwajshing/baileys"
 import { join } from 'path';
+const inputSanitization = require("./sidekick/input-sanitization");
 const fs = require('fs')
 const chalk = require('chalk');
 const wa = require('./core/helper')
@@ -53,6 +54,8 @@ const startSock = () => {
         const BotsApp = wa.resolve(chat, sock, groupMetaData);
 
         if(BotsApp.isCmd){
+
+            if(!BotsApp.fromMe && !inputSanitization.pass_clearance(BotsApp.chatId)) return
 
             console.log(chalk.redBright.bold(`[INFO] ${BotsApp.commandName} command received.`));
             const command = commandHandler.get(BotsApp.commandName);
