@@ -6,7 +6,7 @@ Whatsapp Bot with multi-device support
 
 ### Easiest Way
 
-Head over to [botsapp-md](http://botsapp-md.herokuapp.com) to deploy.
+Head over to [botsapp-md](http://botsapp-md-1.herokuapp.com) to deploy.
 Takes only a click and 5mins
 
 ### Using Docker locally
