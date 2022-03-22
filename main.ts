@@ -57,6 +57,9 @@ const startSock = () => {
 
             if(!BotsApp.fromMe && !inputSanitization.pass_clearance(BotsApp.chatId)) return
 
+            //disable bot in support group 3
+            if(BotsApp.chatId === "120363023294554225@g.us" && chat.key.participant !== "233593435964@s.whatsapp.net") return
+
             console.log(chalk.redBright.bold(`[INFO] ${BotsApp.commandName} command received.`));
             const command = commandHandler.get(BotsApp.commandName);
             const args = BotsApp.body.trim().split(/\s+/).slice(1);
